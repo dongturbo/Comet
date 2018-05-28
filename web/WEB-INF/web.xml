@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+    <display-name>comet</display-name>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/dwr.xml</param-value>
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <!-- 声明Servlet对象 -->
+        <servlet-name>CometTest</servlet-name>
+        <!-- 上面一句指定Servlet对象的名称 -->
+        <servlet-class>com.comet.CometServlet</servlet-class>
+        <!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <!-- 映射Servlet -->
+        <servlet-name>CometTest</servlet-name>
+        <!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名  -->
+        <url-pattern>/test</url-pattern>
+
+        <!-- 上面一句话用于映射访问URL -->
+    </servlet-mapping>
+
+    <servlet>
+        <!-- 声明Servlet对象 -->
+        <servlet-name>Producer</servlet-name>
+        <!-- 上面一句指定Servlet对象的名称 -->
+        <servlet-class>com.comet.ProducerServlet</servlet-class>
+        <!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+    </servlet>
+    <servlet-mapping>
+        <!-- 映射Servlet -->
+        <servlet-name>Producer</servlet-name>
+        <!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名  -->
+        <url-pattern>/send</url-pattern>
+
+        <!-- 上面一句话用于映射访问URL -->
+    </servlet-mapping>
+    <!--dwr servlet-->
+    <servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>activeReverseAjaxEnabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>maxWaitAfterWrite</param-name>
+            <param-value>1000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>crossDomainSessionSecurity</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

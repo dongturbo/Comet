@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+        "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+
+    <allow>
+        <create creator="new" javascript="Listener">
+            <param name="class" value="com.comet.CometListener" />
+            <include method="onListener"/>
+        </create>
+        <convert converter="bean" match="com.cjm.web.dwr.Message">
+            <param name="include" value="id,text"/>
+        </convert>
+    </allow>
+
+</dwr>
